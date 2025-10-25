@@ -9,7 +9,6 @@ body {
   line-height: 1.6;
   color: #2c3e50;
   overflow-x: hidden;
-  /* Hacemos que el body ocupe al menos toda la pantalla */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -41,7 +40,6 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  /* Añadimos 'a' para que el logo sea un link */
   color: white;
   text-decoration: none;
 }
@@ -55,7 +53,6 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  /* Color del ícono de tu marca */
   color: #667eea;
 }
 
@@ -113,19 +110,18 @@ body {
   color: #5568d3 !important;
 }
 
-/* --- ESTILOS PARA LA SECCIÓN DE LOGIN --- */
 .login-section {
-  flex: 1; /* Hace que esta sección ocupe el espacio restante */
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 140px 2rem 100px; /* Padding para dejar espacio al header */
+  padding: 140px 2rem 100px;
   background: linear-gradient(
     135deg,
     #667eea 0%,
     #764ba2 100%
-  ); /* Fondo igual al hero */
-  min-height: 100vh; /* Asegura que cubra toda la altura */
+  );
+  min-height: 100vh
 }
 
 .login-card {
@@ -232,7 +228,6 @@ body {
   text-decoration: underline;
 }
 
-/* --- Footer (copiado de tu index) --- */
 .footer {
   background: #1a1a1a;
   color: white;
@@ -258,7 +253,6 @@ body {
   opacity: 0.7;
 }
 
-/* --- Animación (copiada de tu index) --- */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -270,7 +264,6 @@ body {
   }
 }
 
-/* --- Media Queries (copiadas de tu index) --- */
 @media (max-width: 768px) {
   .nav-menu {
     display: none;

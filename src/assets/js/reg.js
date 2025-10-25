@@ -9,7 +9,6 @@ roleCards.forEach((card) => {
   });
 });
 
-// Indicador de fuerza de contraseña
 const passwordInput = document.getElementById("password");
 const strengthBar = document.querySelector(".password-strength-bar");
 
@@ -35,7 +34,6 @@ passwordInput.addEventListener("input", function () {
   }
 });
 
-// Manejo del formulario
 const form = document.getElementById("registerForm");
 form.addEventListener("submit", function (e) {
   e.preventDefault();
