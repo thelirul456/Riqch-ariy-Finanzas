@@ -1,118 +1,543 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="../assets/css/diseño2.css">
-    <title>Inicia Sesion 🌱</title>
-  </head>
-  <body>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Riqch'ariy Finanzas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 50%, #4ECDC4 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            animation: headerGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes headerGlow {
+            0%, 100% { box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3); }
+            50% { box-shadow: 0 5px 30px rgba(78, 205, 196, 0.5); }
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #FFA500 0%, #FFD700 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            animation: bounce 2s ease-in-out infinite;
+            box-shadow: 0 3px 15px rgba(255, 215, 0, 0.5);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(10deg); }
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .nav-menu a:hover {
+            transform: translateY(-2px) scale(1.1);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-login {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid white;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .btn-login:hover {
+            background: white;
+            color: #FF6B6B;
+            transform: scale(1.05);
+        }
+
+        .btn-register {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            color: white !important;
+            text-decoration: none;
+            padding: 0.6rem 1.8rem;
+            border-radius: 25px;
+            font-weight: 700;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-register:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 107, 107, 0.6);
+        }
+
+        .login-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 140px 2rem 100px;
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #FFE66D 100%);
+            background-size: 400% 400%;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .login-section::before {
+            content: '⭐🌟✨💫🎯🚀🎈🎉⭐🌟✨💫🎯🚀🎈🎉⭐🌟✨💫';
+            position: absolute;
+            font-size: 3rem;
+            top: 20%;
+            left: -10%;
+            width: 120%;
+            animation: floatStars 20s linear infinite;
+            opacity: 0.3;
+            white-space: nowrap;
+        }
+
+        @keyframes floatStars {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .login-section::after {
+            content: '💰🏦💳🪙💵💸📊📈💰🏦💳🪙💵💸📊📈';
+            position: absolute;
+            font-size: 2.5rem;
+            bottom: 10%;
+            right: -10%;
+            width: 120%;
+            animation: floatMoney 25s linear infinite;
+            opacity: 0.2;
+            white-space: nowrap;
+        }
+
+        @keyframes floatMoney {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .login-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            animation: fadeInUp 0.6s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #FFE66D, #FF6B6B);
+            background-size: 400%;
+            border-radius: 30px;
+            z-index: -1;
+            animation: borderGlow 3s ease infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .login-card .logo {
+            justify-content: center;
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #FFE66D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .login-card h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #FFE66D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+        }
+
+        .login-card > p {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.3rem;
+            z-index: 1;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3.5rem;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #4ECDC4;
+            box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1);
+        }
+
+        .form-link {
+            display: block;
+            text-align: right;
+            margin-top: 0.5rem;
+            color: #4ECDC4;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .form-link:hover {
+            color: #FF6B6B;
+            text-decoration: underline;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: white;
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #FFE66D 100%);
+            background-size: 200%;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1.5rem;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 107, 107, 0.6);
+            background-position: 100%;
+        }
+
+        .btn-submit:active {
+            transform: translateY(-1px);
+        }
+
+        .form-footer-text {
+            margin-top: 2rem;
+            color: #7f8c8d;
+            font-size: 1rem;
+        }
+
+        .form-footer-text a {
+            color: #4ECDC4;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .form-footer-text a:hover {
+            color: #FF6B6B;
+            text-decoration: underline;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            background: #e9ecef;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 1rem;
+            position: relative;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 0.8rem;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-btn:hover {
+            border-color: #4ECDC4;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.2);
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer p {
+            margin-top: 2rem;
+            opacity: 0.7;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            .auth-buttons {
+                display: flex;
+            }
+            .login-card {
+                padding: 2rem;
+            }
+            .login-card h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
     <header class="header">
-      <div class="nav-container">
-        <a href="inicio.html" class="logo">
-          <div class="logo-icon">🌱</div>
-          <span>Riqch'ariy Finanzas</span>
-        </a>
-        <nav>
-          <ul class="nav-menu">
-            <li><a href="inicio.html">Inicio</a></li>
-            <li><a href="inicio.html#caracteristicas">Características</a></li>
-            <li><a href="inicio.html#etapas">Etapas</a></li>
-            <li><a href="inicio.html#familia">Familia</a></li>
-            <li class="auth-buttons">
-              <a
-                href="seccion.html"
-                class="btn-login"
-                style="background: rgba(255, 255, 255, 0.1)"
-                >Iniciar Sesión</a
-              >
-              <a href="registro.html" class="btn-register">Registrarse</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+        <div class="nav-container">
+            <a href="inicio.html" class="logo">
+                <div class="logo-icon">🌱</div>
+                <span>Riqch'ariy Finanzas</span>
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="inicio.html#inicio">Inicio</a></li>
+                    <li><a href="inicio.html#caracteristicas">Características</a></li>
+                    <li><a href="inicio.html#etapas">Etapas</a></li>
+                    <li><a href="inicio.html#familia">Familia</a></li>
+                    <li class="auth-buttons">
+                        <a href="seccion.html" class="btn-login">Iniciar Sesión</a>
+                        <a href="registro.html" class="btn-register">Registrarse</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main class="login-section">
-      <div class="login-card">
-        <div class="logo">
-          <div class="logo-icon">🌱</div>
-          <span>Riqch'ariy</span>
+        <div class="login-card">
+            <div class="logo">
+                <div class="logo-icon">🌱</div>
+                <span>Riqch'ariy</span>
+            </div>
+
+            <h2>¡Bienvenido de vuelta! 🎉</h2>
+            <p>Ingresa a tu cuenta para continuar tu aventura financiera.</p>
+
+            <form action="#">
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">📧</span>
+                        <input type="email" id="email" class="form-input" placeholder="tu.correo@ejemplo.com" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+                    </div>
+                    <a href="#" class="form-link">¿Olvidaste tu contraseña?</a>
+                </div>
+
+                <button type="submit" class="btn-submit">Ingresar 🚀</button>
+            </form>
+
+            <div class="divider">
+                <span>O continúa con</span>
+            </div>
+
+            <div class="social-login">
+                <button class="social-btn" title="Iniciar con Google">🔍</button>
+                <button class="social-btn" title="Iniciar con Facebook">📘</button>
+                <button class="social-btn" title="Iniciar con Apple">🍎</button>
+            </div>
+
+            <p class="form-footer-text">
+                ¿Aún no tienes una cuenta? 
+                <a href="registro.html">Regístrate aquí</a>
+            </p>
         </div>
-
-        <h2>¡Bienvenido de vuelta!</h2>
-        <p>Ingresa a tu cuenta para continuar tu aventura financiera.</p>
-
-        <form action="#">
-          <div class="form-group">
-            <label for="email">Correo Electrónico</label>
-            <input
-              type="email"
-              id="email"
-              class="form-input"
-              placeholder="tu.correo@ejemplo.com"
-              required
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="password">Contraseña</label>
-            <input
-              type="password"
-              id="password"
-              class="form-input"
-              placeholder="••••••••"
-              required
-            />
-            <a href="#" class="form-link">¿Olvidaste tu contraseña?</a>
-          </div>
-
-          <button type="submit" class="btn-submit">Ingresar</button>
-        </form>
-
-        <p class="form-footer-text">
-          ¿Aún no tienes una cuenta?
-          <a href="registro.html">Regístrate aquí</a>
-        </p>
-      </div>
     </main>
 
     <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <div class="logo-icon">🌱</div>
-          <span class="logo" style="font-size: 1.8rem; color: white"
-            >Riqch'ariy Finanzas</span
-          >
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo-icon">🌱</div>
+                <span class="logo" style="font-size: 1.8rem; color: white;">Riqch'ariy Finanzas</span>
+            </div>
+            <p style="font-size: 1.2rem; margin: 2rem 0;">Sembrando prosperidad en el corazón del hogar peruano 🇵🇪</p>
+            <div style="margin: 2rem 0; color: #999; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;">
+                <p>📧 contacto@riqchariy.pe</p>
+                <p>📱 WhatsApp: +51 999 888 777</p>
+                <p>📍 Lima, Perú</p>
+            </div>
+            <p style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #333;">&copy; 2025 Riqch'ariy Finanzas. Todos los derechos reservados.</p>
         </div>
-        <p style="font-size: 1.2rem; margin: 2rem 0">
-          Sembrando prosperidad en el corazón del hogar peruano
-        </p>
-        <div
-          style="
-            margin: 2rem 0;
-            color: #999;
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-          "
-        >
-          <p>📧 contacto@riqchariy.pe</p>
-          <p>📱 WhatsApp: +51 999 888 777</p>
-          <p>📍 Lima, Perú</p>
-        </div>
-        <p
-          style="
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid #333;
-          "
-        >
-          &copy; 2025 Riqch'ariy Finanzas. Todos los derechos reservados.
-        </p>
-      </div>
     </footer>
-  </body>
+</body>
 </html>
